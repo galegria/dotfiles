@@ -1,0 +1,104 @@
+
+* ELPA 
+#+BEGIN_SRC emacs-lisp
+
+
+(require 'package)
+(package-initialize)
+(setq package-archives
+'(("ELPA" . "http://tromey.com/elpa/")
+   ("gnu" . "http://elpa.gnu.org/packages/")
+   ("melpa" . "http://melpa.milkbox.net/packages/")))
+   ;;("marmalade" . "http://marmalade-repo.org/packages/")
+
+#+END_SRC
+
+
+* POWER LINE 
+#+BEGIN_SRC emacs-lisp
+
+(require 'powerline)
+(powerline-vim-theme)
+
+#+END_SRC
+
+
+* ORG MODE
+#+BEGIN_SRC emacs-lisp
+
+;;(require 'ox-freemind.el)
+(setq org-directory "~/org/")
+
+#+END_SRC
+
+** COSMETICS 
+
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)  ;; you want this to activate coloring in blocks
+(setq org-src-tab-acts-natively t)
+(setq org-pretty-entities t)
+
+#+END_SRC
+
+
+
+** AGENDA 
+#+BEGIN_SRC emacs-lisp
+
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "§" 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+#+END_SRC
+
+ 
+
+
+** AGENDA FILES 
+#+BEGIN_SRC emacs-lisp
+(setq org-log-done 'time)
+(setq org-agenda-files (list "~/org/work.org"
+                             "~/org/school.org"
+                             "~/org/home.org"
+                             "~/org/pessoal.org"))
+#+END_SRC
+
+** CAPTURE 
+#+BEGIN_SRC emacs-lisp
+
+(setq org-default-notes-file "~/org/notes.org")
+     (define-key global-map "\C-cd" 'org-capture)
+
+#+END_SRC
+
+
+
+** MIND MAP 
+#+BEGIN_SRC emacs-lisp
+
+(load "/Users/max/.emacs.d/elpa/org-mind-map-20170827.1554/org-mind-map.el")
+
+#+END_SRC
+
+
+
+
+
+** BABEL 
+** active Babel languages
+#+BEGIN_SRC emacs-lisp
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (python . t)
+   (ruby . t)
+   (shell . t)
+    ))
+
+#+END_SRC
+
