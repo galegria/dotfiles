@@ -1,0 +1,10 @@
+* README
+
+This repository serves the purpose of hosting part of my chaotic config files.
+I will be adding stuff to it, knowing that they are a sad bunch.
+
+As of now there is only:
+
+- bash_profile
+- zshrc
+- settings.org (emacs config files, linked to init.el somehow)
