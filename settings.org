@@ -1,3 +1,9 @@
+* BACKUPS
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
+
+#+END_SRC
+
 
 * ELPA 
 #+BEGIN_SRC emacs-lisp
@@ -14,11 +20,10 @@
 #+END_SRC
 
 
-* POWER LINE 
+* HELM
 #+BEGIN_SRC emacs-lisp
-
-(require 'powerline)
-(powerline-vim-theme)
+(require 'helm-config)
+(helm-mode 1)
 
 #+END_SRC
 
@@ -26,7 +31,8 @@
 * ORG MODE
 #+BEGIN_SRC emacs-lisp
 
-(setq org-directory "~/org/")
+(setq org-directory "~/org/"
+      org-archive-location (concat org-directory "/archives/%s_archive::"))
 
 #+END_SRC
 
@@ -107,3 +113,20 @@
 (global-set-key (kbd "C-x g") 'magit-status) 
 
 #+END_SRC
+
+
+* POWER LINE 
+#+BEGIN_SRC emacs-lisp
+
+(require 'powerline)
+(powerline-vim-theme)
+
+#+END_SRC
+
+
+* THEME
+#+BEGIN_SRC emacs-lisp
+(load-theme 'misterioso)
+
+#+END_SRC
+)
