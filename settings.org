@@ -23,6 +23,12 @@
 #+END_SRC
 
 
+* ACE-WINDOW
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-TAB") 'ace-window)
+
+#+END_SRC
+
 * HELM
 
 #+BEGIN_SRC emacs-lisp
