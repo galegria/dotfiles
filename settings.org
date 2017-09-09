@@ -1,3 +1,6 @@
+* TODO adicionar descrições
+
+
 * BACKUPS
 #+BEGIN_SRC emacs-lisp
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
@@ -129,4 +132,4 @@
 (load-theme 'misterioso)
 
 #+END_SRC
-)
+
