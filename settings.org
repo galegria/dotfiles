@@ -25,9 +25,11 @@
 
 * ACE-WINDOW
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-TAB") 'ace-window)
+
+(global-set-key (kbd "M-p") 'ace-window)
 
 #+END_SRC
+
 
 * HELM
 
@@ -59,6 +61,7 @@
 
 
 ** AGENDA 
+*** AGENDA KEYBINDINGS
 #+BEGIN_SRC emacs-lisp
 
 
@@ -71,17 +74,15 @@
 
 #+END_SRC
 
- 
+*** AGENDA FILES 
+ #+BEGIN_SRC emacs-lisp
+ (setq org-log-done 'time)
+ (setq org-agenda-files (list "~/org/work.org"
+                              "~/org/school.org"
+                              "~/org/home.org"
+                              "~/org/pessoal.org"))
+ #+END_SRC
 
-
-** AGENDA FILES 
-#+BEGIN_SRC emacs-lisp
-(setq org-log-done 'time)
-(setq org-agenda-files (list "~/org/work.org"
-                             "~/org/school.org"
-                             "~/org/home.org"
-                             "~/org/pessoal.org"))
-#+END_SRC
 
 ** CAPTURE 
 #+BEGIN_SRC emacs-lisp
@@ -91,6 +92,26 @@
 
 #+END_SRC
 
+
+
+** REVEAL
+#+BEGIN_SRC emacs-lisp
+(require 'ox-reveal)
+
+#+END_SRC
+
+
+** EXPORT
+#+BEGIN_SRC emacs-lisp
+
+(getenv "PATH")
+ (setenv "PATH"
+(concat
+ "~/Library/TeX/texbin" ":"
+
+(getenv "PATH")))
+
+#+END_SRC
 
 
 ** MIND MAP 
@@ -104,18 +125,27 @@
 
 
 
+
 ** BABEL 
-** active Babel languages
+*** Active Babel languages
+ #+BEGIN_SRC emacs-lisp
+
+ (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((R . t)
+    (python . t)
+    (ruby . t)
+    (shell . t)
+     ))
+
+ #+END_SRC
+
+
+** Completions
 #+BEGIN_SRC emacs-lisp
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((R . t)
-   (python . t)
-   (ruby . t)
-   (shell . t)
-    ))
-
+(defun my-org-mode-hook ()
+(add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+(add-hook 'org-mode-hook #'my-org-mode-hook)
 #+END_SRC
 
 
@@ -135,9 +165,40 @@
 #+END_SRC
 
 
-* THEME
+* VISUAL/THEME
+
+stuff /stolen/ from awalker4
+
+** GUI stuff
 #+BEGIN_SRC emacs-lisp
-(load-theme 'misterioso)
+(dolist (mode
+         '(tool-bar-mode                ; No toolbars, more room for text.
+           menu-bar-mode                ; No menu bar
+           scroll-bar-mode              ; No scroll bars either.
+           blink-cursor-mode))          ; The blinking cursor gets old.
+  (funcall mode 0))
 
 #+END_SRC
+
+
+** Theme
+ 
+ #+BEGIN_SRC emacs-lisp
+
+ (defun aw/load-theme ()
+   (load-theme 'zenburn t)
+   (when (member "Inconsolata" (font-family-list))
+     (set-face-attribute 'default nil :font "Inconsolata-13")
+     (add-to-list 'default-frame-alist
+                  '(font . "Inconsolata-13"))))
+
+ (defun aw/load-theme-in-frame (frame)
+   (select-frame frame)
+   (aw/load-theme))
+
+ (if (daemonp)
+     (add-hook 'after-make-frame-functions #'aw/load-theme-in-frame)
+   (aw/load-theme))
+
+ #+END_SRC
 
