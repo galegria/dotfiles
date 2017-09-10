@@ -1,6 +1,26 @@
 * TODO adicionar descrições
 
 
+* ACE-WINDOW
+#+BEGIN_SRC emacs-lisp
+
+(global-set-key (kbd "M-p") 'ace-window)
+
+#+END_SRC
+
+
+* AUTO-COMPLETE
+#+BEGIN_SRC emacs-lisp
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
+
+#+END_SRC
+
 * BACKUPS
 #+BEGIN_SRC emacs-lisp
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
@@ -23,14 +43,6 @@
 #+END_SRC
 
 
-* ACE-WINDOW
-#+BEGIN_SRC emacs-lisp
-
-(global-set-key (kbd "M-p") 'ace-window)
-
-#+END_SRC
-
-
 * HELM
 
 #+BEGIN_SRC emacs-lisp
@@ -38,6 +50,37 @@
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x) ;;M-x replaced
 (global-set-key (kbd "C-x C-f") 'helm-find-files) ;; Find Files replaced
+#+END_SRC
+
+
+* HLEDGER
+#+BEGIN_SRC emacs-lisp
+
+
+
+;;; Basic configuration
+(require 'hledger-mode)
+
+;; To open files with .journal extension in hledger-mode
+(add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
+
+;; Provide the path to you journal file.
+;; The default location is too opinionated.
+(setq hledger-jfile "~/org/contas/hledger.journal")
+
+;; For auto-complete users,
+(add-to-list 'ac-modes 'hledger-mode)
+(add-hook 'hledger-mode-hook
+    (lambda ()
+        (setq-local ac-sources '(hledger-ac-source))))
+
+#+END_SRC
+
+
+* MAGIT
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'magit-status) 
+
 #+END_SRC
 
 
@@ -145,14 +188,6 @@
 (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
 (add-hook 'org-mode-hook #'my-org-mode-hook)
 #+END_SRC
-
-
-* MAGIT
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status) 
-
-#+END_SRC
-
 
 * POWER LINE 
 #+BEGIN_SRC emacs-lisp
