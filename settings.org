@@ -103,9 +103,7 @@
 
 ** EXPORT
 #+BEGIN_SRC emacs-lisp
-
-(getenv "PATH")
- (setenv "PATH"
+(setenv "PATH"
 (concat
  "~/Library/TeX/texbin" ":"
 
