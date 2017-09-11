@@ -1,7 +1,12 @@
-* TODO adicionar descrições
+
+* DONE adicionar descrições
+  CLOSED: [2017-09-11 Mon 08:38]
 
 
 * ACE-WINDOW
+
+Shifting between windows
+
 #+BEGIN_SRC emacs-lisp
 
 (global-set-key (kbd "M-p") 'ace-window)
@@ -10,6 +15,8 @@
 
 
 * AUTO-COMPLETE
+Don't even know how this works..
+
 #+BEGIN_SRC emacs-lisp
 (define-globalized-minor-mode real-global-auto-complete-mode
   auto-complete-mode (lambda ()
@@ -19,7 +26,8 @@
 (real-global-auto-complete-mode t)
 
 
-#+END_SRC
+#+END_SRC 
+
 
 * BACKUPS
 #+BEGIN_SRC emacs-lisp
@@ -29,9 +37,10 @@
 
 
 * ELPA 
+
+Sources for packages, mostly using melpa
+
 #+BEGIN_SRC emacs-lisp
-
-
 (require 'package)
 (package-initialize)
 (setq package-archives
@@ -44,6 +53,7 @@
 
 
 * HELM
+Global searching? Navigating as well I guess. 
 
 #+BEGIN_SRC emacs-lisp
 (require 'helm-config)
@@ -54,9 +64,9 @@
 
 
 * HLEDGER
+
+Double entry accounting.
 #+BEGIN_SRC emacs-lisp
-
-
 
 ;;; Basic configuration
 (require 'hledger-mode)
@@ -78,6 +88,7 @@
 
 
 * MAGIT
+Just you WAITING
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x g") 'magit-status) 
 
@@ -85,6 +96,8 @@
 
 
 * ORG MODE
+Global Org mode settings.
+
 #+BEGIN_SRC emacs-lisp
 
 (setq org-directory "~/org/"
@@ -189,7 +202,10 @@
 (add-hook 'org-mode-hook #'my-org-mode-hook)
 #+END_SRC
 
+
 * POWER LINE 
+Status bar inspired by the vim powerline bar.
+
 #+BEGIN_SRC emacs-lisp
 
 (require 'powerline)
